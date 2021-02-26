@@ -4,8 +4,6 @@ services:
     image: mysql:5.7
     ports: ['3306:3306']
     restart: always
-    volumes: 
-      - ./mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=symfonydb
@@ -35,16 +33,14 @@ services:
   jenkins:
    image: jenkins/jenkins:lts
    privileged: true
-   user: root
-   ports:
-     - 30181:8080
-     - 30182:50000
-   container_name: jenkins
-   volumes:
-     - ./jenkins_data:/var/jenkins_home
-     - /var/run/docker.sock:/var/run/docker.sock
+   user: root    ports:
+      - 8081:8080
+      - 8082:50000
+    container_name: jenkins
+    volumes:
+      - ./jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
 
 
 volumes:
   portainer_data:
-
